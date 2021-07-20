@@ -1,15 +1,28 @@
 import "../styles/Home.css";
 
 function Home() {
-  let updateName = () => {
+  const updateName = () => {
     let textfield = document.querySelector("#nameTextField");
     let name = textfield.value;
     localStorage.setItem("disembleergon-todo-app-name", name);
     window.open("/", "_self");
   };
 
-  let redirectTodos = () => {
+  const redirectTodos = () => {
     window.open("/", "_self");
+  };
+
+  const resetValues = () => {
+    // confirm
+    if (!window.confirm("Möchtest du wirklich deine Daten löschen?")) return;
+
+    try {
+      localStorage.removeItem("disembleergon-todo-app-todos");
+      localStorage.removeItem("disembleergon-todo-app-name");
+      window.alert("Löschen der Daten war erfolgreich!");
+    } catch (e) {
+      window.alert("Löschen der Daten war nicht erfolgreich!");
+    }
   };
 
   return (
@@ -32,7 +45,7 @@ function Home() {
       </div>
 
       <div className="resetValuesDiv">
-        <button id="resetValuesBtn">Daten löschen</button>
+        <button id="resetValuesBtn" onClick={resetValues}>Daten löschen</button>
       </div>
     </div>
   );
