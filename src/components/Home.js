@@ -31,6 +31,9 @@ function Home() {
         </button>
       </div>
 
+      <div className="resetValuesDiv">
+        <button id="resetValuesBtn">Daten löschen</button>
+      </div>
     </div>
   );
 }

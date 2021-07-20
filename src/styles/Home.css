@@ -66,3 +66,35 @@ body * {
 #nameSubmitBtn:hover {
   background-color: hsla(147, 63%, 73%, 0.746);
 }
+
+.resetValuesDiv {
+  position: relative;
+  margin-top: 20vh;
+  display: flex;
+  justify-content: center;
+}
+
+#resetValuesBtn {
+  position: absolute;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  width: 60vw;
+  color: rgba(255, 255, 255, 0.459);
+  font-size: small;
+  border-radius: 20px;
+  background-color: rgba(255, 39, 39, 0.459);
+  transition: 0.7s;
+}
+
+@media only screen and (min-width: 750px) {
+  #resetValuesBtn {
+    font-size: 2rem;
+  }
+}
+
+#resetValuesBtn:hover {
+  background-color: rgb(255, 39, 39);
+  color: rgb(255, 255, 255);
+}
