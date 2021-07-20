@@ -1,65 +1,77 @@
-import { useState } from 'react';
-import '../styles/TodoForm.css'
-import Todo from './Todo'
+import { useEffect, useRef, useState } from "react";
+import "../styles/TodoForm.css";
+import Todo from "./Todo";
 
-function TodoPage(){
+function TodoPage() {
+  var username = useRef();
+
+  useEffect(() => {
+    username.current = localStorage.getItem("disembleergon-todo-app-name");
 
     // let user enter name
-    if(localStorage.getItem("disembleergon-todo-app-name") == null)
-        window.open("/home", "_self");
-    
-    var username = localStorage.getItem("disembleergon-todo-app-name");
+    if (username.current == null) window.open("/home", "_self");
 
-    const redirectHome = () => {window.open("/home", "_self")};
+    setTodos(JSON.parse(localStorage.getItem("disembleergon-todo-app-todos")));
+  }, []);
 
-    // ------ todo-mechanics ------
+  const redirectHome = () => {
+    window.open("/home", "_self");
+  };
 
-    const [todos, setTodos] = useState([]);
+  // ------ todo-mechanics ------
 
-    const addTodo = () => {
+  const [todos, setTodos] = useState([]);
 
-        let textField = document.querySelector("#todoInputField");
-        let todoContent = textField.value;
+  useEffect(() => {
+    localStorage.setItem("disembleergon-todo-app-todos", JSON.stringify(todos));
+  }, [todos]);
 
-        // check if input text is not empty
-        if(todoContent.match(/\s*/) && !todoContent.match(/\S+/))
-            return;
+  const addTodo = () => {
+    let textField = document.querySelector("#todoInputField");
+    let todoContent = textField.value;
 
-        setTodos([{id: Date.now(), task: todoContent}, ...todos]);
+    // check if input text is not empty
+    if (todoContent.match(/\s*/) && !todoContent.match(/\S+/)) return;
 
-        // reset textField
-        textField.value = "";
-    }
+    setTodos([{ id: Date.now(), task: todoContent }, ...todos]);
 
-    const rmTodo = (id) => {
-        setTodos(todos.filter(todo => 
-            todo.id !== id
-        ))
-    }
+    // reset textField
+    textField.value = "";
+  };
 
-    return(
-        <div className="todoPage">
-            <nav>
-                <button id="backHomeBtn" onClick={redirectHome}>Home</button>
-            </nav>
+  const rmTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
 
-            <div className="headerDiv">
-                <h1>{username}'s</h1>
-                <h1>Todo-Liste</h1>
-            </div>
+  return (
+    <div className="todoPage">
+      <nav>
+        <button id="backHomeBtn" onClick={redirectHome}>
+          Home
+        </button>
+      </nav>
 
-            <div className="todoFormDiv">
-                <input type="text" id="todoInputField"></input>
-                <button id="todoSubmitButton" onClick={addTodo}><div><p>✚</p></div></button>
-            </div>
+      <div className="headerDiv">
+        <h1>{username.current}'s</h1>
+        <h1>Todo-Liste</h1>
+      </div>
 
-            <div className="todoListDiv">
-                {todos.map(todo => (
-                    <Todo key={todo.id} id={todo.id} task={todo.task} rmTodos={rmTodo}/>
-                ))}
-            </div>
-        </div>
-    )
+      <div className="todoFormDiv">
+        <input type="text" id="todoInputField"></input>
+        <button id="todoSubmitButton" onClick={addTodo}>
+          <div>
+            <p>✚</p>
+          </div>
+        </button>
+      </div>
+
+      <div className="todoListDiv">
+        {todos.map((todo) => (
+          <Todo key={todo.id} id={todo.id} task={todo.task} rmTodos={rmTodo} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default TodoPage;

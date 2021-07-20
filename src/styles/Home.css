@@ -1,69 +1,68 @@
-body{
-    background-image: url("https://cdn.pixabay.com/photo/2017/03/25/17/56/color-2174049_1280.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+body {
+  background-image: url("https://cdn.pixabay.com/photo/2017/03/25/17/56/color-2174049_1280.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-    box-sizing: border-box;
-    width:100vw;
-    min-height:100vh;
+  box-sizing: border-box;
+  width: 100vw;
+  min-height: 100vh;
 
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-body *{
-    margin:0;
-    padding:0
-}
-
-.homeHeaderDiv{
-    color: white;
-    position:relative;
-    margin-top: 1rem;
+body * {
+  margin: 0;
+  padding: 0;
 }
 
-.homeHeaderDiv *
-{
-    margin:0;
-    display:flex;
-    justify-content: center;
+.homeHeaderDiv {
+  color: white;
+  position: relative;
+  margin-top: 1rem;
 }
 
-#homeText{
-    font-size: 8vh;
-    margin-top: -0.5rem;
+.homeHeaderDiv * {
+  margin: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.homeFormDiv{
-    margin-top: 1rem;
-    position: relative;
+#homeText {
+  font-size: 8vh;
+  margin-top: -0.5rem;
 }
 
-#nameTextField{
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    box-sizing: border-box;
-    padding: 1rem;
-    width: 45vw;
-    height: 5vh;
-    margin-top: -0.5rem;
-    text-align: center;
+.homeFormDiv {
+  margin-top: 1rem;
+  position: relative;
 }
 
-#nameSubmitBtn{
-    background-color: hsla(147, 43%, 73%, 0.746);
-    border:none;
-    outline:none;
-    box-sizing: border-box;
-    padding: 0.7rem;
-    border-radius: 20px;
-    position: absolute;
-    top: 150%;
-    left: 50%;
-    transform: translate(-50%);
+#nameTextField {
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 45vw;
+  height: 5vh;
+  margin-top: -0.5rem;
+  text-align: center;
 }
 
-#nameSubmitBtn:hover{
-    background-color: hsla(147, 63%, 73%, 0.746);
+#nameSubmitBtn {
+  background-color: hsla(147, 43%, 73%, 0.746);
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  padding: 0.7rem;
+  border-radius: 20px;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#nameSubmitBtn:hover {
+  background-color: hsla(147, 63%, 73%, 0.746);
 }
