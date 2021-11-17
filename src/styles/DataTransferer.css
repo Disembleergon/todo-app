@@ -1,14 +1,19 @@
-.exportDataDiv {
+.DataDiv {
   position: absolute;
-  top: 15rem;
   left: 50%;
   transform: translate(-50%);
-  display: flex;
-  justify-content: center;
 }
 
-.exportDataBtn {
-  background: rgb(63, 185, 255);
+#exportDataDiv {
+  top: 16rem;
+}
+
+#importDataDiv {
+  top: 20rem;
+}
+
+.DataBtn {
+  background: rgba(63, 249, 255, 0.493);
   box-sizing: border-box;
   border: none;
   outline: none;

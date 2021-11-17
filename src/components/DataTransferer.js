@@ -27,11 +27,20 @@ function DataTransferer() {
     a.click();
   };
 
+  const importData = async () => {};
+
   return (
-    <div className="exportDataDiv">
-      <button className="exportDataBtn" onClick={exportData}>
-        Daten exportieren
-      </button>
+    <div>
+      <div className="DataDiv" id="exportDataDiv">
+        <button className="DataBtn" onClick={exportData}>
+          Daten exportieren
+        </button>
+      </div>
+      <div className="DataDiv" id="importDataDiv">
+        <button className="DataBtn" onClick={importData}>
+          Daten importieren
+        </button>
+      </div>
     </div>
   );
 }
