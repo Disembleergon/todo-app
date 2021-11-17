@@ -1,3 +1,7 @@
+html{
+  --button-text-color: rgba(0, 0, 0, 0.698);
+}
+
 body {
   padding: 2.5rem;
 }
@@ -30,7 +34,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   z-index: 10;
-  color: black;
+  color: var(--button-text-color);
 }
 
 #backHomeBtn:hover {

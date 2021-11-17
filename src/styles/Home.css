@@ -1,3 +1,4 @@
+
 body {
   background-image: url("../assets/backgroundImage.png");
   background-position: center;
@@ -63,7 +64,7 @@ body * {
   top: 150%;
   left: 50%;
   transform: translate(-50%);
-  color: black;
+  color: var(--button-text-color);
 }
 
 #nameSubmitBtn:hover {
@@ -104,28 +105,4 @@ body * {
 #resetValuesBtn:hover {
   background-color: rgb(255, 39, 39);
   color: rgb(255, 255, 255);
-}
-
-.exportDataDiv {
-  position: absolute;
-  top: 15rem;
-  left: 50%;
-  transform: translate(-50%);
-  display: flex;
-  justify-content: center;
-}
-
-.exportDataBtn {
-  background: rgb(63, 185, 255);
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  width: 15rem;
-  color: white;
-  font-size: small;
-  font-weight: bold;
-  border-radius: 20px;
-  text-align: center;
-  cursor: pointer;
 }
