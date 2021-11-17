@@ -1,4 +1,5 @@
 import "../styles/Home.css";
+import DataTransferer from "./DataTransferer";
 
 function Home() {
   const updateName = () => {
@@ -44,9 +45,8 @@ function Home() {
         </button>
       </div>
 
-      <div className="exportDataDiv">
-        <a className="exportDataBtn">Daten exportieren</a>
-      </div>
+      {/* contains buttons and functionality to export/import todos */}
+      <DataTransferer />
 
       <div className="resetValuesDiv">
         <button id="resetValuesBtn" onClick={resetValues}>
