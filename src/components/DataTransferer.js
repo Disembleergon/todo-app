@@ -27,7 +27,31 @@ function DataTransferer() {
     a.click();
   };
 
-  const importData = async () => {};
+  const importData = async () => {
+    // get files and cancel when the array is empty
+    const files = document.getElementById("importDataBtn").files;
+    if (files.length === 0) return;
+
+    // get first file
+    const file = files[0];
+
+    // read file
+    let reader = new FileReader();
+    reader.addEventListener("load", async (e) => {
+      const fileContent = e.target.result;
+
+      // try parsing the file, just to see if it is json content
+      try {
+        JSON.parse(fileContent);
+      } catch (e) {
+        window.alert("Failed to parse imported data.");
+      }
+
+      // update todos from imported files
+      localStorage.setItem("disembleergon-todo-app-todos", fileContent);
+    });
+    reader.readAsText(file);
+  };
 
   return (
     <div>
@@ -37,9 +61,16 @@ function DataTransferer() {
         </button>
       </div>
       <div className="DataDiv" id="importDataDiv">
-        <button className="DataBtn" onClick={importData}>
+        <label htmlFor="importDataBtn" className="DataBtn">
+          <input
+            className="DataBtn"
+            id="importDataBtn"
+            onClick={importData}
+            type="file"
+            onChange={importData}
+          ></input>
           Daten importieren
-        </button>
+        </label>
       </div>
     </div>
   );

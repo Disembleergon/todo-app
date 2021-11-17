@@ -25,4 +25,9 @@
   border-radius: 20px;
   text-align: center;
   cursor: pointer;
+  display: inline-block;
+}
+
+#importDataBtn{
+    display: none;
 }
