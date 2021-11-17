@@ -2,8 +2,6 @@ import '../styles/Todo.css'
 
 function Todo(params){
 
-    console.log(params.id + " => " + params.task);
-
     return(
         <div className="todoDiv">
             <p>{params.task}</p>
