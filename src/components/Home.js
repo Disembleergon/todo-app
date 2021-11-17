@@ -21,7 +21,7 @@ function Home() {
       localStorage.removeItem("disembleergon-todo-app-name");
       window.alert("Löschen der Daten war erfolgreich!");
     } catch (e) {
-      window.alert("Löschen der Daten war nicht erfolgreich!");
+      window.alert("Löschen der Daten fehlgeschlagen.");
     }
   };
 
@@ -45,7 +45,9 @@ function Home() {
       </div>
 
       <div className="resetValuesDiv">
-        <button id="resetValuesBtn" onClick={resetValues}>Daten löschen</button>
+        <button id="resetValuesBtn" onClick={resetValues}>
+          Daten löschen
+        </button>
       </div>
     </div>
   );
