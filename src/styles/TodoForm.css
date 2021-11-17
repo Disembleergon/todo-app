@@ -1,96 +1,96 @@
-body{
-    padding: 2.5rem;
+body {
+  padding: 2.5rem;
 }
 
-.headerDiv{
-    color: white;
-    font-size:normal;
+.headerDiv {
+  color: white;
+  font-size: normal;
 }
 
 @media only screen and (min-width: 750px) {
-    
-    .headerDiv{
-        font-size: 1.5rem;
-    }
+  .headerDiv {
+    font-size: 1.5rem;
+  }
 }
 
-.headerDiv *{
-    display: flex;
-    place-content: center;
+.headerDiv * {
+  display: flex;
+  place-content: center;
 }
 
-#backHomeBtn{
-    position: fixed;
-    top: 2vh;
-    right: 3vw;
-    border: none;
-    outline: none;
-    background-color: hsla(208, 78%, 83%, 0.829);
-    box-sizing: border-box;
-    padding: 0.5rem;
-    border-radius: 10px;
-    cursor: pointer;
-    z-index: 10;
+#backHomeBtn {
+  position: fixed;
+  top: 2vh;
+  right: 3vw;
+  border: none;
+  outline: none;
+  background-color: hsla(208, 78%, 83%, 0.829);
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+  color: black;
 }
 
-#backHomeBtn:hover{
-    background-color: hsla(208, 98%, 93%, 0.829);
+#backHomeBtn:hover {
+  background-color: hsla(208, 98%, 93%, 0.829);
 }
 
-.todoFormDiv{
-    margin-top: 1rem;
-    position:absolute;
-    width:40vw;
-    left: 50%;
-    transform: translate(-50%);
+.todoFormDiv {
+  margin-top: 1rem;
+  position: absolute;
+  width: 40vw;
+  left: 50%;
+  transform: translate(-50%);
 }
 
-.todoFormDiv *{
-    border:none;
-    outline:none;
-    box-sizing: border-box;
-    height:5vh;
-    padding: 0.5rem;
+.todoFormDiv * {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  height: 5vh;
+  padding: 0.5rem;
 }
 
-#todoInputField{
-    border-radius: 0;
-    position: absolute;
-    left:0;
-    top:0;
-    width:80%;
+#todoInputField {
+  border-radius: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80%;
 }
 
-#todoSubmitButton{
-    color: rgb(36, 36, 36);
-    position: absolute;
-    width: 25%;
-    top:0;
-    right:0;
-    cursor: pointer;
-    background-color: hsl(138, 88%, 75%);
-    text-align: center;
+#todoSubmitButton {
+  color: rgb(36, 36, 36);
+  position: absolute;
+  width: 25%;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  background-color: hsl(138, 88%, 75%);
+  text-align: center;
 }
 
-#todoSubmitButton div{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#todoSubmitButton div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#todoSubmitButton p{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    transform: translate(0, -25%);
+#todoSubmitButton p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0, -25%);
 }
 
-#todoSubmitButton:hover{
-    background-color: hsl(138, 98%, 80%);
+#todoSubmitButton:hover {
+  background-color: hsl(138, 98%, 80%);
 }
 
-.todoListDiv{
-    margin-top: 5rem;
-    font-weight: bold;
+.todoListDiv {
+  margin-top: 5rem;
+  font-weight: bold;
 }

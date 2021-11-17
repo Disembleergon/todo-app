@@ -36,6 +36,8 @@ body * {
 .homeFormDiv {
   margin-top: 1rem;
   position: relative;
+  display: grid;
+  place-items: center;
 }
 
 #nameTextField {
@@ -61,6 +63,7 @@ body * {
   top: 150%;
   left: 50%;
   transform: translate(-50%);
+  color: black;
 }
 
 #nameSubmitBtn:hover {
@@ -68,8 +71,11 @@ body * {
 }
 
 .resetValuesDiv {
-  position: relative;
-  margin-top: 20vh;
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 40%;
   display: flex;
   justify-content: center;
 }
@@ -80,7 +86,7 @@ body * {
   border: none;
   outline: none;
   padding: 1rem;
-  width: 60vw;
+  width: 100%;
   color: rgba(255, 255, 255, 0.459);
   font-size: small;
   font-weight: bold;
@@ -98,4 +104,28 @@ body * {
 #resetValuesBtn:hover {
   background-color: rgb(255, 39, 39);
   color: rgb(255, 255, 255);
+}
+
+.exportDataDiv {
+  position: absolute;
+  top: 15rem;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.exportDataBtn {
+  background: rgb(63, 185, 255);
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  width: 15rem;
+  color: white;
+  font-size: small;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
 }

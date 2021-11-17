@@ -44,6 +44,10 @@ function Home() {
         </button>
       </div>
 
+      <div className="exportDataDiv">
+        <a className="exportDataBtn">Daten exportieren</a>
+      </div>
+
       <div className="resetValuesDiv">
         <button id="resetValuesBtn" onClick={resetValues}>
           Daten löschen
