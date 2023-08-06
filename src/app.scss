@@ -1,1 +1,18 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+@font-face {
+	font-family: "Inter";
+	src: url("$lib/assets/Inter-VariableFont.ttf");
+}
+
+html * {
+	margin: 0;
+	padding: 0;
+	color: $WHITEGREY;
+	font-family: "Inter";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background-color: $BG_GREY;
+}
