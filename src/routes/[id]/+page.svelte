@@ -1,8 +1,11 @@
 <script>
 	import Todo from "../../lib/components/Todo.svelte";
 	import PlusIcon from "$lib/assets/plus.svg";
+	import ArrowIcon from "$lib/assets/arrow_forward.svg";
+	import DeleteIcon from "$lib/assets/delete.svg";
 	import todosData from "$lib/stores.js";
 	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
 
 	const id = $page.params.id;
 	const title = $todosData[id].name;
@@ -18,7 +21,22 @@
 		$todosData[id].todos = [todo, ...$todosData[id].todos];
 		value = "";
 	}
+
+	const back = () => window.history.back();
+	async function delete_() {
+		await goto("/");
+		$todosData = Object.fromEntries(
+			Object.entries($todosData).filter(([listID]) => listID != id)
+		);
+	}
 </script>
+
+<button class="back" on:click={back}
+	><img src={ArrowIcon} alt="back" class="topIcon" /></button
+>
+<button class="delete" on:click={delete_}
+	><img src={DeleteIcon} alt="delete" class="topIcon" /></button
+>
 
 <div class="header">
 	<div>
@@ -51,6 +69,36 @@
 	:global(body),
 	:global(html) {
 		overflow-x: hidden;
+	}
+
+	.topIcon {
+		aspect-ratio: 1/1;
+		width: 8vmin;
+		height: auto;
+	}
+
+	.back {
+		background: none;
+		border: none;
+		outline: none;
+		position: absolute;
+		top: 5vmin;
+		left: 5vmin;
+		cursor: pointer;
+
+		img {
+			rotate: 180deg;
+		}
+	}
+
+	.delete {
+		background: none;
+		border: none;
+		outline: none;
+		position: absolute;
+		top: 5vmin;
+		right: 5vmin;
+		cursor: pointer;
 	}
 
 	.header {
@@ -110,6 +158,22 @@
 
 			.formElements {
 				margin-top: 2.5%;
+			}
+		}
+
+		.back {
+			transition: 200ms transform ease-in-out;
+
+			&:hover {
+				transform: translateX(-10%);
+			}
+		}
+
+		.delete {
+			transition: 100ms scale ease-in-out;
+
+			&:hover {
+				scale: 1.1;
 			}
 		}
 	}
