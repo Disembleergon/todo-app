@@ -2,6 +2,7 @@
 	import PlusIcon from "$lib/assets/plus.svg";
 	import todosData from "$lib/stores.js";
 	import { page } from "$app/stores";
+	import { slide } from "svelte/transition";
 
 	export let content;
 	export let ID;
@@ -13,7 +14,7 @@
 		));
 </script>
 
-<div class="todo">
+<div class="todo" transition:slide>
 	<div class="contentDiv">
 		<p>{content}</p>
 	</div>
