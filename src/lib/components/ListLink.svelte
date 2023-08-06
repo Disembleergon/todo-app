@@ -1,12 +1,12 @@
 <script>
 	import ArrowIcon from "$lib/assets/arrow_forward.svg";
-	import { fly } from "svelte/transition";
+	import { fly, slide } from "svelte/transition";
 
 	export let listName;
 	export let ID;
 </script>
 
-<div class="listLink" in:fly={{y: 0, x: "-100vw", duration: 600}}>
+<div class="listLink" in:fly={{y: 0, x: "-100vw", duration: 600}} out:slide>
 	<div class="listTitleDiv">
 		<p class="listTitle">{listName}</p>
 	</div>

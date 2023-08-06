@@ -6,6 +6,7 @@
 	import todosData from "$lib/stores.js";
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
+	import { fly } from "svelte/transition";
 
 	const id = $page.params.id;
 	const title = $todosData[id].name;
@@ -25,44 +26,52 @@
 	const back = () => window.history.back();
 	async function delete_() {
 		await goto("/");
-		$todosData = Object.fromEntries(
-			Object.entries($todosData).filter(([listID]) => listID != id)
-		);
+		setTimeout(() => {
+			$todosData = Object.fromEntries(
+				Object.entries($todosData).filter(([listID]) => listID != id)
+			);
+		}, 650); // wait for end of page transition
 	}
 </script>
 
-<button class="back" on:click={back}
-	><img src={ArrowIcon} alt="back" class="topIcon" /></button
+<div
+	in:fly={{ y: 0, x: "100vw", duration: 600 }}
+	out:fly={{ y: 0, x: "100vw", duration: 600 }}
+	style="position: fixed; width: 100vw"
 >
-<button class="delete" on:click={delete_}
-	><img src={DeleteIcon} alt="delete" class="topIcon" /></button
->
+	<button class="back" on:click={back}
+		><img src={ArrowIcon} alt="back" class="topIcon" /></button
+	>
+	<button class="delete" on:click={delete_}
+		><img src={DeleteIcon} alt="delete" class="topIcon" /></button
+	>
 
-<div class="header">
-	<div>
-		<h1>{title}</h1>
+	<div class="header">
+		<div>
+			<h1>{title}</h1>
+		</div>
+		<div class="formElements">
+			<input
+				type="text"
+				class="todoInput"
+				on:keypress={(e) => e.key == "Enter" && addTodo()}
+				bind:value
+			/>
+			<button class="addButton" on:click={addTodo}>
+				<img class="addIcon" src={PlusIcon} alt="plus" />
+			</button>
+		</div>
 	</div>
-	<div class="formElements">
-		<input
-			type="text"
-			class="todoInput"
-			on:keypress={(e) => e.key == "Enter" && addTodo()}
-			bind:value
-		/>
-		<button class="addButton" on:click={addTodo}>
-			<img class="addIcon" src={PlusIcon} alt="plus" />
-		</button>
+
+	<div class="todos">
+		{#if $todosData[id].todos.length > 0}
+			<hr />
+		{/if}
+
+		{#each $todosData[id].todos as todo (todo.id)}
+			<Todo content={todo.content} ID={todo.id} />
+		{/each}
 	</div>
-</div>
-
-<div class="todos">
-	{#if $todosData[id].todos.length > 0}
-		<hr />
-	{/if}
-
-	{#each $todosData[id].todos as todo (todo.id)}
-		<Todo content={todo.content} ID={todo.id} />
-	{/each}
 </div>
 
 <style lang="scss">

@@ -2,6 +2,7 @@
 	import PlusIcon from "$lib/assets/plus.svg";
 	import ListLink from "../lib/components/ListLink.svelte";
 	import listsData from "$lib/stores.js";
+	import { fly } from "svelte/transition";
 
 	function addList() {
 		const input = prompt("Name of the list:");
@@ -22,22 +23,28 @@
 	}
 </script>
 
-<div class="header">
-	<div>
-		<h1>Todo-App</h1>
+<div
+	in:fly={{ y: 0, x: "-100vw", duration: 600 }}
+	out:fly={{ y: 0, x: "-100vw", duration: 600 }}
+	style="position: fixed; width: 100vw"
+>
+	<div class="header">
+		<div>
+			<h1>Todo-App</h1>
+		</div>
+		<div>
+			<button class="addButton" on:click={addList}>
+				<img class="addIcon" src={PlusIcon} alt="plus" />
+			</button>
+		</div>
 	</div>
-	<div>
-		<button class="addButton" on:click={addList}>
-			<img class="addIcon" src={PlusIcon} alt="plus" />
-		</button>
-	</div>
-</div>
 
-<div class="listsDiv">
-	<!--reverse, so new lists are at the top-->
-	{#each Object.entries($listsData).reverse() as [ID, list] (ID)}
-		<ListLink listName={list.name} {ID} />
-	{/each}
+	<div class="listsDiv">
+		<!--reverse, so new lists are at the top-->
+		{#each Object.entries($listsData).reverse() as [ID, list] (ID)}
+			<ListLink listName={list.name} {ID} />
+		{/each}
+	</div>
 </div>
 
 <!--#####################################-->
