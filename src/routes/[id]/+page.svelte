@@ -37,7 +37,7 @@
 <div
 	in:fly={{ y: 0, x: "100vw", duration: 600 }}
 	out:fly={{ y: 0, x: "100vw", duration: 600 }}
-	style="position: fixed; width: 100vw"
+	style="position: fixed; width: 100vw; height: 100vh; touch-action: none;"
 >
 	<button class="back" on:click={back}
 		><img src={ArrowIcon} alt="back" class="topIcon" /></button
@@ -160,6 +160,19 @@
 		}
 	}
 
+	.todos {
+		$topSpace: 30%;
+
+		position: absolute;
+		top: $topSpace;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 100% - $topSpace;
+	}
+
 	@media only screen and (min-width: 600px) {
 		.header {
 			margin-top: 5%;
@@ -184,6 +197,12 @@
 			&:hover {
 				scale: 1.1;
 			}
+		}
+
+		.todos {
+			$topSpace: 40%;
+			top: $topSpace;
+			height: 100% - $topSpace;
 		}
 	}
 </style>
