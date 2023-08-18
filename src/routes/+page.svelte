@@ -26,7 +26,7 @@
 <div
 	in:fly={{ y: 0, x: "-100vw", duration: 600 }}
 	out:fly={{ y: 0, x: "-100vw", duration: 600 }}
-	style="position: fixed; width: 100vw"
+	style="position: fixed; width: 100vw; height: 100vh; touch-action: none;"
 >
 	<div class="header">
 		<div>
@@ -79,6 +79,19 @@
 		}
 	}
 
+	.listsDiv {
+		$topSpace: 27%;
+
+		position: absolute;
+		top: $topSpace;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 100% - $topSpace;
+	}
+
 	@media only screen and (min-width: 600px) {
 		.header {
 			margin-top: 5%;
@@ -91,6 +104,12 @@
 					width: 8vmin;
 				}
 			}
+		}
+
+		.listsDiv {
+			$topSpace: 35%;
+			top: $topSpace;
+			height: 100% - $topSpace;
 		}
 	}
 </style>
