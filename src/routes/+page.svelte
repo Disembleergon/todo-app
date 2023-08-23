@@ -1,5 +1,7 @@
 <script>
 	import PlusIcon from "$lib/assets/plus.svg";
+	import ExportIcon from "$lib/assets/export.svg";
+	import ImportIcon from "$lib/assets/import.svg";
 	import ListLink from "../lib/components/ListLink.svelte";
 	import listsData from "$lib/stores.js";
 	import { fly } from "svelte/transition";
@@ -28,6 +30,13 @@
 	out:fly={{ y: 0, x: "-100vw", duration: 600 }}
 	style="position: fixed; width: 100vw; height: 100vh; touch-action: none;"
 >
+	<a href="/export" class="export">
+		<img src={ExportIcon} alt="export" class="topIcon" />
+	</a>
+	<a href="/import" class="import">
+		<img src={ImportIcon} alt="import" class="topIcon" />
+	</a>
+
 	<div class="header">
 		<div>
 			<h1>Todo-App</h1>
@@ -50,8 +59,26 @@
 <!--#####################################-->
 
 <style lang="scss">
+	.export {
+		position: absolute;
+		top: 5vmin;
+		left: 5vmin;
+	}
+
+	.import {
+		position: absolute;
+		top: 5vmin;
+		right: 5vmin;
+	}
+
+	.topIcon {
+		aspect-ratio: 1/1;
+		width: 10vmin;
+		height: auto;
+	}
+
 	.header {
-		margin-top: 10%;
+		margin-top: 20%;
 		margin-bottom: 10%;
 
 		h1 {
@@ -80,7 +107,7 @@
 	}
 
 	.listsDiv {
-		$topSpace: 27%;
+		$topSpace: 35%;
 
 		position: absolute;
 		top: $topSpace;
@@ -103,6 +130,15 @@
 				.addIcon {
 					width: 8vmin;
 				}
+			}
+		}
+
+		.topIcon {
+			width: 8vmin;
+			transition: 100ms scale ease-in-out;
+
+			&:hover{
+				scale: 1.1;
 			}
 		}
 
