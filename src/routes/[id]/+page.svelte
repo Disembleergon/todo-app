@@ -1,12 +1,12 @@
 <script>
 	import Todo from "../../lib/components/Todo.svelte";
 	import PlusIcon from "$lib/assets/plus.svg";
-	import ArrowIcon from "$lib/assets/arrow_forward.svg";
 	import DeleteIcon from "$lib/assets/delete.svg";
 	import todosData from "$lib/stores.js";
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
 	import { fly } from "svelte/transition";
+	import BackButton from "$lib/components/BackButton.svelte";
 
 	const id = $page.params.id;
 	const title = $todosData[id].name;
@@ -23,7 +23,6 @@
 		value = "";
 	}
 
-	const back = () => window.history.back();
 	async function delete_() {
 		await goto("/");
 		setTimeout(() => {
@@ -39,9 +38,7 @@
 	out:fly={{ y: 0, x: "100vw", duration: 600 }}
 	style="position: fixed; width: 100vw; height: 100vh; touch-action: none;"
 >
-	<button class="back" on:click={back}
-		><img src={ArrowIcon} alt="back" class="topIcon" /></button
-	>
+	<BackButton />
 	<button class="delete" on:click={delete_}
 		><img src={DeleteIcon} alt="delete" class="topIcon" /></button
 	>
@@ -84,20 +81,6 @@
 		aspect-ratio: 1/1;
 		width: 8vmin;
 		height: auto;
-	}
-
-	.back {
-		background: none;
-		border: none;
-		outline: none;
-		position: absolute;
-		top: 5vmin;
-		left: 5vmin;
-		cursor: pointer;
-
-		img {
-			rotate: 180deg;
-		}
 	}
 
 	.delete {
@@ -180,14 +163,6 @@
 
 			.formElements {
 				margin-top: 2.5%;
-			}
-		}
-
-		.back {
-			transition: 200ms transform ease-in-out;
-
-			&:hover {
-				transform: translateX(-10%);
 			}
 		}
 
