@@ -1,19 +1,27 @@
 <script>
 	import ArrowIcon from "$lib/assets/arrow_forward.svg";
+	import CheckedIcon from "$lib/assets/radio_checked.svg";
+	import UncheckedIcon from "$lib/assets/radio_unchecked.svg";
+	import ToggleButton from "$lib/components/ToggleButton.svelte";
 	import { fly, slide } from "svelte/transition";
 
+	export let choosingTodos;
 	export let listName;
 	export let ID;
 </script>
 
-<div class="listLink" in:fly={{y: 0, x: "-100vw", duration: 600}} out:slide>
+<div class="listLink" in:fly={{ y: 0, x: "-100vw", duration: 600 }} out:slide>
 	<div class="listTitleDiv">
 		<p class="listTitle">{listName}</p>
 	</div>
 	<div class="arrowDiv">
-		<a href="/{ID}">
-			<img src={ArrowIcon} alt="arrow" class="arrow" />
-		</a>
+		{#if !choosingTodos}
+			<a href="/{ID}">
+				<img src={ArrowIcon} alt="arrow" class="arrow"/>
+			</a>
+		{:else}
+			<ToggleButton icon1={CheckedIcon} icon2={UncheckedIcon} {ID} />
+		{/if}
 	</div>
 </div>
 
@@ -21,6 +29,7 @@
 	.listLink {
 		position: relative;
 		margin-bottom: 5%;
+		z-index: 5;
 
 		.listTitleDiv {
 			display: inline-block;

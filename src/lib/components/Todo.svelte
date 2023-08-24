@@ -1,6 +1,6 @@
 <script>
 	import PlusIcon from "$lib/assets/plus.svg";
-	import todosData from "$lib/stores.js";
+	import { listsData } from "$lib/stores.js";
 	import { page } from "$app/stores";
 	import { slide } from "svelte/transition";
 
@@ -9,7 +9,7 @@
 
 	const listID = $page.params.id;
 	const removeTodo = () =>
-		($todosData[listID].todos = $todosData[listID].todos.filter(
+		($listsData[listID].todos = $listsData[listID].todos.filter(
 			({ id }) => id != ID
 		));
 </script>
@@ -37,12 +37,12 @@
 			padding: 5vmin;
 			flex: 1;
 
-            p{
-                line-height: 25px;
-                font-weight: 500;
-                word-break: break-all;
-                word-wrap: break-word;
-            }
+			p {
+				line-height: 25px;
+				font-weight: 500;
+				word-break: break-all;
+				word-wrap: break-word;
+			}
 		}
 
 		.removeDiv {

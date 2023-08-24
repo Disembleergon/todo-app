@@ -2,14 +2,14 @@
 	import Todo from "../../lib/components/Todo.svelte";
 	import PlusIcon from "$lib/assets/plus.svg";
 	import DeleteIcon from "$lib/assets/delete.svg";
-	import todosData from "$lib/stores.js";
+	import { listsData } from "$lib/stores.js";
 	import { page } from "$app/stores";
 	import { goto } from "$app/navigation";
 	import { fly } from "svelte/transition";
 	import BackButton from "$lib/components/BackButton.svelte";
 
 	const id = $page.params.id;
-	const title = $todosData[id].name;
+	const title = $listsData[id].name;
 
 	let value = "";
 	function addTodo() {
@@ -19,15 +19,15 @@
 			id: Date.now(),
 		};
 
-		$todosData[id].todos = [todo, ...$todosData[id].todos];
+		$listsData[id].todos = [todo, ...$listsData[id].todos];
 		value = "";
 	}
 
 	async function delete_() {
 		await goto("/");
 		setTimeout(() => {
-			$todosData = Object.fromEntries(
-				Object.entries($todosData).filter(([listID]) => listID != id)
+			$listsData = Object.fromEntries(
+				Object.entries($listsData).filter(([listID]) => listID != id)
 			);
 		}, 650); // wait for end of page transition
 	}
@@ -61,11 +61,11 @@
 	</div>
 
 	<div class="todos">
-		{#if $todosData[id].todos.length > 0}
+		{#if $listsData[id].todos.length > 0}
 			<hr />
 		{/if}
 
-		{#each $todosData[id].todos as todo (todo.id)}
+		{#each $listsData[id].todos as todo (todo.id)}
 			<Todo content={todo.content} ID={todo.id} />
 		{/each}
 	</div>
