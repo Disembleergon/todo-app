@@ -3,10 +3,14 @@
 	import { onMount } from "svelte";
 	import QrCode from "qrcode";
 	import BackButton from "$lib/components/BackButton.svelte";
+	import { exportTodos } from "$lib/stores.js";
+	import { database } from "$lib/firebase.js";
+	import { ref, set } from "firebase/database";
 
 	let ID;
 	let canvas;
 	onMount(() => {
+		/////// ID and QR code /////////////////////////////////////////////////////
 		ID = localStorage.getItem("export-id") || new Date().getTime().toString();
 		localStorage.setItem("export-id", ID);
 
@@ -18,6 +22,12 @@
 
 		QrCode.toCanvas(canvas, ID, { width: canvas.width }, (e) => {
 			if (e) console.error(e);
+		});
+
+		/////// upload data to firebase //////////////////////////////////////////
+		set(ref(database, ID.toString()), $exportTodos).catch((error) => {
+			console.error(error);
+			window.alert("Something went wrong!\nAre you connected to the internet?");
 		});
 	});
 </script>
