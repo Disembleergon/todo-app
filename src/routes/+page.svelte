@@ -8,6 +8,10 @@
 	import { listsData, exportTodos } from "$lib/stores.js";
 	import { fly, fade } from "svelte/transition";
 	import { goto } from "$app/navigation";
+	import { onMount } from "svelte";
+	import { page } from "$app/stores";
+	import { database } from "$lib/firebase.js";
+	import { ref, onValue } from "firebase/database";
 
 	function addList() {
 		const input = prompt("Name of the list:");
@@ -38,6 +42,23 @@
 		console.log($exportTodos);
 		await goto("/export");
 	}
+
+	async function addImportedLists(imported) {
+		for (const [id, value] of Object.entries(imported)) {
+			$listsData[id] = structuredClone(value);
+		}
+		await goto("/");
+	}
+
+	onMount(() => {
+		const ID = $page.url.searchParams.get("importID");
+		if (!ID) return;
+
+		onValue(ref(database, ID), (snapshot) => {
+			const data = snapshot.val();
+			if (data) addImportedLists(data);
+		});
+	});
 </script>
 
 <div
