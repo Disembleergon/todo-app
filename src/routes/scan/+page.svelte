@@ -5,7 +5,7 @@
 	import BackButton from "$lib/components/BackButton.svelte";
 
 	const qrSuccess = async (decodedText, _) => {
-		await goto(`/import/${decodedText}`);
+		await goto(`/?importID=${decodedText}`);
 	};
 
 	let scanner;

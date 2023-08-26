@@ -4,6 +4,11 @@
 	import BackButton from "$lib/components/BackButton.svelte";
 	import { fly } from "svelte/transition";
 	import { goto } from "$app/navigation";
+
+	const enterPin = async () => {
+		const ID = prompt("ID to import:");
+		await goto(`/?importID=${ID}`);
+	};
 </script>
 
 <div
@@ -18,7 +23,7 @@
 			<img class="qrIcon" src={QrScannerIcon} alt="qr code" />
 		</button>
 
-		<button class="pinButton">
+		<button class="pinButton" on:click={enterPin}>
 			<img class="pinIcon" src={PinInputIcon} alt="pin" />
 		</button>
 	</div>
