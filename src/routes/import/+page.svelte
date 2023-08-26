@@ -3,6 +3,7 @@
 	import PinInputIcon from "$lib/assets/pin_input.svg";
 	import BackButton from "$lib/components/BackButton.svelte";
 	import { fly } from "svelte/transition";
+	import { goto } from "$app/navigation";
 </script>
 
 <div
@@ -13,7 +14,7 @@
 	<BackButton />
 
 	<div class="selectionDiv">
-		<button class="qrButton">
+		<button class="qrButton" on:click={async () => await goto("/scan")}>
 			<img class="qrIcon" src={QrScannerIcon} alt="qr code" />
 		</button>
 
