@@ -44,8 +44,9 @@
 	}
 
 	async function addImportedLists(imported) {
-		for (const [id, value] of Object.entries(imported)) {
-			$listsData[id] = structuredClone(value);
+		for (const [_, value] of Object.entries(imported)) {
+			const ID = Date.now();
+			$listsData[ID] = structuredClone(value);
 		}
 		await goto("/");
 	}
