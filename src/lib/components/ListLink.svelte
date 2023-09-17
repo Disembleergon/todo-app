@@ -3,21 +3,47 @@
 	import CheckedIcon from "$lib/assets/radio_checked.svg";
 	import UncheckedIcon from "$lib/assets/radio_unchecked.svg";
 	import ToggleButton from "$lib/components/ToggleButton.svelte";
+	import { createEventDispatcher } from "svelte";
 	import { fly, slide } from "svelte/transition";
+
+	const dispatch = createEventDispatcher();
 
 	export let choosingTodos;
 	export let listName;
 	export let ID;
+
+	const REQUIRED_HOLDING_DURATION = 750;
+	let holdingTimeout;
+
+	const releasing = () => clearTimeout(holdingTimeout);
+	const holding = () => {
+		holdingTimeout = setTimeout(() => {
+			const renamed = prompt("Rename", listName);
+			if (!renamed) return;
+
+			listName = renamed;
+			dispatch("rename", { id: ID, renamed: renamed });
+		}, REQUIRED_HOLDING_DURATION);
+	};
 </script>
 
-<div class="listLink" in:fly={{ y: 0, x: "-100vw", duration: 600 }} out:slide>
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+	class="listLink"
+	in:fly={{ y: 0, x: "-100vw", duration: 600 }}
+	out:slide
+	on:mousedown={holding}
+	on:touchstart={holding}
+	on:mouseup={releasing}
+	on:touchend={releasing}
+>
 	<div class="listTitleDiv">
 		<p class="listTitle">{listName}</p>
 	</div>
 	<div class="arrowDiv">
 		{#if !choosingTodos}
 			<a href="/{ID}">
-				<img src={ArrowIcon} alt="arrow" class="arrow"/>
+				<img src={ArrowIcon} alt="arrow" class="arrow" />
 			</a>
 		{:else}
 			<ToggleButton icon1={CheckedIcon} icon2={UncheckedIcon} {ID} />
@@ -30,6 +56,9 @@
 		position: relative;
 		margin-bottom: 5%;
 		z-index: 5;
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
 
 		.listTitleDiv {
 			display: inline-block;

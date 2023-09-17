@@ -112,7 +112,13 @@
 	<div class="listsDiv">
 		<!--reverse, so new lists are at the top-->
 		{#each Object.entries($listsData).reverse() as [ID, list] (ID)}
-			<ListLink listName={list.name} {ID} {choosingTodos} />
+			<ListLink
+				listName={list.name}
+				{ID}
+				{choosingTodos}
+				on:rename={({ detail }) =>
+					($listsData[detail.id].name = detail.renamed)}
+			/>
 		{/each}
 	</div>
 </div>
