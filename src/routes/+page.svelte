@@ -44,9 +44,15 @@
 	}
 
 	async function addImportedLists(imported) {
+		///////////////////////////
+		const delay = () => {
+			return new Promise((resolve) => setTimeout(resolve, 5));
+		};
+		///////////////////////////
 		for (const [_, value] of Object.entries(imported)) {
 			const ID = Date.now();
 			$listsData[ID] = structuredClone(value);
+			await delay(); // important! clone takes under one ms => same index xD
 		}
 		await goto("/");
 	}
